@@ -2,4 +2,4 @@ roblox reanimation hub that was going to be pendulum hub premium but the old own
 
 tl;dr: stuff happened so yeah the hub is free now
 
-also sang go fuck yourself
+i have a particularly large hate for sang
