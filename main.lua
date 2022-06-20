@@ -44,33 +44,7 @@ else
 	getgenv().TorsoFling = true
 end
 local flinging = SettingsTab:NewLabel('Flinging: '..tostring(getgenv().Flinging))
-SettingsTab:NewLabel('NOTE: Simple with fling requires Brown Hair')
-SettingsTab:NewButton('Toggle Fling', 'aasdasdasdasd', function()
-	--print(R6, R15)
-	if R6 == true then 
-		if getgenv().Flinging == true then
-			getgenv().Flinging = false
-			getgenv().Fling = false
-		else
-			getgenv().Flinging = true
-			print(getgenv().Reanimation)
-			if getgenv().Reanimation == 'PermaDeath' then
-				getgenv().Fling = 'HumanoidRootPart'
-			else
-				getgenv().Fling = 'Right Arm'
-			end
-		end
-	elseif R15 == true then
-		if getgenv().Flinging == true then
-			getgenv().Flinging = false
-			getgenv().TorsoFling = false
-		else
-			getgenv().Flinging = true
-			getgenv().TorsoFling = true
-		end
-	end
-	flinging.Text = 'Flinging: '..tostring(getgenv().Flinging)
-end)
+SettingsTab:NewLabel('NOTE: Simple requires Brown Hair')
 
 getgenv()._reanimate = loadstring(game:HttpGet("https://raw.githubusercontent.com/shidemuri/coffeeware/main/reanim.lua"))()
 
