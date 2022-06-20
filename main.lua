@@ -43,7 +43,7 @@ else
 	getgenv().Fling = false
 	getgenv().TorsoFling = true
 end
-local flinging = SettingsTab:NewLabel('Flinging: '..tostring(getgenv().Flinging))
+
 SettingsTab:NewLabel('NOTE: Simple requires Brown Hair')
 
 getgenv()._reanimate = loadstring(game:HttpGet("https://raw.githubusercontent.com/shidemuri/coffeeware/main/reanim.lua"))()
