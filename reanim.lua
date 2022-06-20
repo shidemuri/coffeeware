@@ -17,7 +17,7 @@ return function()
 	--getgenv().Fling = "HumanoidRootPart"
 	if game.Players.LocalPlayer.Character.Humanoid.RigType==Enum.HumanoidRigType.R15 then 
 		--getgenv().ExtremeNetless=true;
-		getgenv().Velocity=-50
+		getgenv().Velocity=-90
 	else 
 		getgenv().AntiSleep=true;
 		--getgenv().ExtremeNetless=false;
@@ -27,7 +27,7 @@ return function()
 	getgenv().PartGUI = false
 	getgenv().FakeGod = false
 	getgenv().GodMode = getgenv().Reanimation == 'PermaDeath' and true or false
-	getgenv().Velocity = -50
+	getgenv().Velocity = -70  --goofy velocity
 	getgenv().Collisions = false
 	getgenv().Claim2 = false
 	getgenv().Notification = true
