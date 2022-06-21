@@ -1,4 +1,4 @@
-local Library = loadstring(game:HttpGet("https://raw.githubusercontent.com/shidemuri/scripts/main/ui_lib.lua"))()
+local Library = loadstring(game:HttpGet("https://raw.githubusercontent.com/shidemuri/scripts/main/newuilib.lua"))()
 
 local hub = Library:New("Coffeeware v1.0.1")
 local SettingsTab = hub:NewTab("Settings")
