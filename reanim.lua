@@ -27,7 +27,7 @@ return function()
 	getgenv().PartGUI = false
 	getgenv().FakeGod = false
 	getgenv().GodMode = getgenv().Reanimation == 'PermaDeath' and true or false
-	getgenv().Velocity = -70  --goofy velocity
+	getgenv().Velocity = -25.05  --goofy velocity
 	getgenv().Collisions = false
 	getgenv().Claim2 = false
 	getgenv().Notification = true
@@ -37,7 +37,7 @@ return function()
 	getgenv().MovementVelocity = true
 	getgenv().ArtificialHeartBeat = true
 	getgenv().R6 = game.Players.LocalPlayer.Character.Humanoid.RigType == Enum.HumanoidRigType.R6 and true or false
-	getgenv().AutoReclaim = true
+	getgenv().AutoReclaim = false
 	getgenv().HatCollision = false
 	getgenv().EnableSpin = true
 	if getgenv().___hooked ~= true then
