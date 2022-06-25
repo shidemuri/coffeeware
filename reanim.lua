@@ -1,4 +1,15 @@
 return function()
+	-- for some reason game:IsLoaded() broke so yeah
+	if getgenv().__isloadedhook ~= true then 
+		local old;
+		old = hookmetamethod(game, "__namecall", newcclosure(function(s,...)
+			if checkcaller() and s == game	and getnamecallmethod() == "IsLoaded" then
+				return old(s,"Workspace")
+			end
+			return old(s,...)
+		end))
+		getgenv().__isloadedhook = true
+	end
 	local function ra(part)
 		local epic = Instance.new('SelectionBox', game.Players.LocalPlayer.Character)
 		epic.Name = 'okayu uwu'
