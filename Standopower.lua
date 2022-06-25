@@ -1,7 +1,7 @@
 -- THIS SCRIPT WAS ORIGINALLY CONVERTED BY TESCALUS
 -- all i did was do stuff to the reanim and do extra hat alignment
 
-getgenv().reanimate()
+getgenv()._reanimate()
 
 loadstring(game:GetObjects("rbxassetid://5425999987")[1].Source)()
 
