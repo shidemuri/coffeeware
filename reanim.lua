@@ -38,7 +38,7 @@ return function()
 	getgenv().PartGUI = false
 	getgenv().FakeGod = false
 	getgenv().GodMode = getgenv().Reanimation == 'PermaDeath' and true or false
-	getgenv().Velocity = -50  --goofy velocity
+	getgenv().Velocity = -70  --PRODUCTION WHY IS THE NETLESS SO FUCKING BADDDDDDDDDDDDDDDDDDDDDDDDDDDDDDDDDDDDDDDDDDDDDDDDDD
 	getgenv().Collisions = false
 	getgenv().Claim2 = false
 	getgenv().Notification = true
