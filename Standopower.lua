@@ -5,6 +5,12 @@ getgenv()._reanimate()
 
 loadstring(game:GetObjects("rbxassetid://5425999987")[1].Source)()
 
+ game:GetService("StarterGui"):SetCore("SendNotification", {
+	Title = "loaded";
+	Text = "press Q to be able to use the stand";
+	Duration = 10;
+})
+
 do
     local filteredMessages = { ['___'] = '___' };
     local onPropertyChanged = function (obj)  
