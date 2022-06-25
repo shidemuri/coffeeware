@@ -45,7 +45,7 @@ return function()
 	getgenv().AutoAnimate = true
 	getgenv().Network = true
 	getgenv().AntiSleep = false
-	getgenv().MovementVelocity = false
+	getgenv().MovementVelocity = true
 	getgenv().ArtificialHeartBeat = true
 	getgenv().R6 = game.Players.LocalPlayer.Character.Humanoid.RigType == Enum.HumanoidRigType.R6 and true or false
 	getgenv().AutoReclaim = false
