@@ -70,7 +70,7 @@ ScriptsTab:NewButton('Road Rogue **', 'vroom vroom', function()
     loadstring(game:HttpGet('https://raw.githubusercontent.com/shidemuri/coffeeware/main/Driveby_Simplifier.lua'))()
 end)
 
-ScriptsTab:NewButton('Katanarist **', 'sword swoosh', function()
+ScriptsTab:NewButton('Katanarist **', 'he gonna slice yo pp', function()
     loadstring(game:HttpGet('https://raw.githubusercontent.com/shidemuri/coffeeware/main/katanarist.lua'))()
 end)
 
@@ -82,11 +82,11 @@ ScriptsTab:NewButton('Strato Glitcher **', 'its just spinning swords yet its coo
     loadstring(game:HttpGet('https://raw.githubusercontent.com/shidemuri/coffeeware/main/strato_glitcher.lua'))()
 end)
 
-ScriptsTab:NewButton('Stando Power **', (function() local str=''for _=0,200 do str = str .. 'ora ' end return str end)(), function() 
+ScriptsTab:NewButton('Stando Power (REJOIN TO REEXEC)**', (function() local str=''for _=0,200 do str = str .. 'ora ' end return str end)(), function() 
 	loadstring(game:HttpGet('https://raw.githubusercontent.com/shidemuri/coffeeware/main/Standopower.lua'))()
 end)
 
-ScriptsTab:NewButton("Studio Dummy V3", '"i should make antideath by making a fake char " 🤓', function()
+ScriptsTab:NewButton("Studio Dummy V3", '"i should make antideath by making a fake char" 🤓', function()
 	loadstring(game:HttpGet('https://raw.githubusercontent.com/shidemuri/coffeeware/main/sdv3.lua'))()
 end)
 
