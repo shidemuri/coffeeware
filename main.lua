@@ -48,7 +48,7 @@ SettingsTab:NewLabel('NOTE: Simple requires Brown Hair')
 
 getgenv()._reanimate = loadstring(game:HttpGet("https://raw.githubusercontent.com/shidemuri/coffeeware/main/reanim.lua"))()
 
-CreditsTab:NewLabel('Reanimation script by Tescalus and ProductionTakeOne#3330')
+CreditsTab:NewLabel('Reanimation script by ProductionTakeOne#3330')
 CreditsTab:NewLabel('UI lib and every convertion: me - padero#0001')
 CreditsTab:NewLabel('Special thanks to: Tescalus (he was the original owner)')
 CreditsTab:NewLabel('Special thanks to: Dalk (this script wouldnt be possible without him)')
