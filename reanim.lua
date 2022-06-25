@@ -58,7 +58,7 @@ return function()
 		game["Run Service"].Heartbeat:Connect(function(t)
 			if r then 
 				if s==false then 
-					if (q.Target.Parent:FindFirstChildOfClass("Humanoid")or q.Target.Parent.Parent:FindFirstChildOfClass("Humanoid")) and not q.Target:FindFirstAncestor('ExProReanimate') then 
+					if (q.Target.Parent:FindFirstChildOfClass("Humanoid")or q.Target.Parent.Parent:FindFirstChildOfClass("Humanoid")) and not q.Target:FindFirstAncestor(game.Players.LocalPlayer.Name) then 
 						s=true;
 						print("Began flinging")
 						local u=p;
@@ -119,7 +119,7 @@ return function()
 				--print(r, s, q.Target, q.Target.Parent)
 				if r then 
 					if s==false then 
-						if (q.Target.Parent:FindFirstChildOfClass("Humanoid")or q.Target.Parent.Parent:FindFirstChildOfClass("Humanoid")) and not q.Target:FindFirstAncestor('ExProReanimate') then 
+						if (q.Target.Parent:FindFirstChildOfClass("Humanoid")or q.Target.Parent.Parent:FindFirstChildOfClass("Humanoid")) and not q.Target:FindFirstAncestor(game.Players.LocalPlayer.Name) then 
 							s=true;
 							print("Began flinging")
 							local u=p;
