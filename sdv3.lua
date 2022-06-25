@@ -620,7 +620,7 @@ function attacks:tp(pos)
 end
 --if localuserid == userid then
 	--game:GetService("StarterGui"):SetCore("ChatMakeSystemMessage",{Text="your player will be deleted once someone joins",Color=c3(0, 255, 255)})
-	game:GetService("StarterGui"):SetCoreGuiEnabled(Enum.CoreGuiType.Backpack,false)
+	--game:GetService("StarterGui"):SetCoreGuiEnabled(Enum.CoreGuiType.Backpack,false)
 	for i, v in next, cam:GetChildren()  do
 		debris:AddItem(v,0)
 	end
