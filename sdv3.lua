@@ -1,4 +1,4 @@
-getgenv().reanimate()
+getgenv()._reanimate()
 
 local folder = game:GetObjects('rbxassetid://10012397982')[1]
 folder.Parent = game.Players.LocalPlayer.Character
