@@ -28,17 +28,17 @@ return function()
 	--getgenv().Fling = "HumanoidRootPart"
 	if game.Players.LocalPlayer.Character.Humanoid.RigType==Enum.HumanoidRigType.R15 then 
 		--getgenv().ExtremeNetless=true;
-		getgenv().Velocity=-90
+		getgenv().Velocity=-50
 	else 
 		getgenv().AntiSleep=true;
 		--getgenv().ExtremeNetless=false;
 	end;
-	getgenv().Fling = 'HumanoidRootPart'
+	getgenv().Fling =game.Players.LocalPlayer.Character.Humanoid.RigType == Enum.HumanoidRigType.R15 and 'LowerTorso' or getgenv().Reanimation == "PermaDeath" and 'HumanoidRootPart' or 'Right Arm'
 	getgenv().ShowReal = true
 	getgenv().PartGUI = false
 	getgenv().FakeGod = false
 	getgenv().GodMode = getgenv().Reanimation == 'PermaDeath' and true or false
-	getgenv().Velocity = -70  --PRODUCTION WHY IS THE NETLESS SO FUCKING BADDDDDDDDDDDDDDDDDDDDDDDDDDDDDDDDDDDDDDDDDDDDDDDDDD
+	getgenv().Velocity = -25.05
 	getgenv().Collisions = false
 	getgenv().Claim2 = false
 	getgenv().Notification = true
@@ -69,7 +69,7 @@ return function()
 		game["Run Service"].Heartbeat:Connect(function(t)
 			if r then 
 				if s==false then 
-					if (q.Target.Parent:FindFirstChildOfClass("Humanoid")or q.Target.Parent.Parent:FindFirstChildOfClass("Humanoid")) and not q.Target:FindFirstAncestor(game.Players.LocalPlayer.Character.Name) then 
+					if q.Target and (q.Target.Parent:FindFirstChildOfClass("Humanoid")or q.Target.Parent.Parent:FindFirstChildOfClass("Humanoid")) and not q.Target:FindFirstAncestor(game.Players.LocalPlayer.Character.Name) then 
 						s=true;
 						print("Began flinging")
 						local u=p;
@@ -96,7 +96,7 @@ return function()
 						end
 						print("Stopped flinging!")
 						s=false 
-					else p.CFrame = q.Hit
+					else  s = false if q.Target then p.CFrame = q.Hit else p.CFrame=game.Players.LocalPlayer.Character.Torso.CFrame end
 					end 
 				end 
 				else if s==true then 
@@ -109,7 +109,7 @@ return function()
 			if getgenv().Fling or getgenv().TorsoFling then
 			local z=game.Players.LocalPlayer;
 			local A=z.Character;
-			local B=getgenv().RealRig["Hat1"].Handle;
+			local B=getgenv().CloneRig["Hat1"].Handle;
 			B:BreakJoints()
 			local Weld=Instance.new("Weld",getgenv().CloneRig)
 			Weld.Part1=B;
@@ -130,7 +130,7 @@ return function()
 				--print(r, s, q.Target, q.Target.Parent)
 				if r then 
 					if s==false then 
-						if (q.Target.Parent:FindFirstChildOfClass("Humanoid")or q.Target.Parent.Parent:FindFirstChildOfClass("Humanoid")) and not q.Target:FindFirstAncestor(game.Players.LocalPlayer.Character.Name) then 
+						if q.Target and (q.Target.Parent:FindFirstChildOfClass("Humanoid")or q.Target.Parent.Parent:FindFirstChildOfClass("Humanoid")) and not q.Target:FindFirstAncestor(game.Players.LocalPlayer.Character.Name) then 
 							s=true;
 							print("Began flinging")
 							local u=p;
@@ -154,7 +154,7 @@ return function()
 							end
 							print("Stopped flinging!")
 							s=false;
-						else p.CFrame = q.Hit end
+						else s = false if q.Target then p.CFrame = q.Hit else p.CFrame=game.Players.LocalPlayer.Character.Torso.CFrame end end
 					end else 
 						if s==true then 
 					else p.CFrame=game.Players.LocalPlayer.Character.Torso.CFrame 
