@@ -2550,7 +2550,7 @@ Character["Advancing Fortress"].circ4.Part.Transparency = 0
 
 
   for _,v in next, game.Players.LocalPlayer.Character:GetChildren() do
-    if v:IsA('Accessory') and not table.find({"SeeMonkey","Robloxclassicred","LavanderHair","Pink Hair","Pal Hair"},v.Name) then
+    if v:IsA('Accessory') and not table.find({"SeeMonkey","Robloxclassicred","LavanderHair","Pink Hair","Pal Hair","Hat1"},v.Name) then
       print(v.Name)
       local limb = v.Handle:FindFirstChildOfClass('Weld').Part1.Name
       local reallimb = limb == 'Torso' and "FTorso" or limb == 'Head' and 'FHead' or limb
