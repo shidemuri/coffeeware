@@ -44,6 +44,7 @@ return function()
 	local ___old; ___old=hookmetamethod(game,'__index',newcclosure(function(s,k)if checkcaller()and s==game:GetService('Workspace')and k== 'non'then return getgenv().CloneRig end return ___old(s,k)end)) getgenv().___hooked=true end
 	loadstring(game:HttpGet("https://raw.githubusercontent.com/CenteredSniper/Kenzen/master/newnetlessreanimate.lua",true))()
 	if getgenv().Reanimation=="PermaDeath"or getgenv().Reanimation==nil then 
+		coroutine.wrap(function()
 		--getgenv().ShowReal=true;
 		--loadstring(game:HttpGet("https://raw.githubusercontent.com/Tescalus/Pendulum-Hubs-Source/main/NetlessReanimV2(ThanksProductionTakeOne%20%233330%20for%20help).lua"))()
 		--[[for _,v in next, game.Players.LocalPlayer.Character[game.Players.LocalPlayer.Name]:GetDescendants() do
@@ -51,7 +52,7 @@ return function()
 				v.P = Vector3.new(20,0,0) --jitteryless netless (i hope)
 			end
 		end]]
-		--task.wait(game.Players.RespawnTime+cloneref(game:GetService('Stats')).Network.ServerStatsItem['Data Ping']:GetValue()/750)
+		task.wait(game.Players.RespawnTime+cloneref(game:GetService('Stats')).Network.ServerStatsItem['Data Ping']:GetValue()/750)
 		if getgenv().Fling or getgenv().TorsoFling then
 		local p=getgenv().RealRig:FindFirstChild("LowerTorso")or getgenv().RealRig.HumanoidRootPart;
 		p.Transparency=.5;
@@ -99,6 +100,7 @@ return function()
 				else p.CFrame=game.Players.LocalPlayer.Character.Torso.CFrame end 
 			end 
 		end)
+		end)()
 	end
 	elseif Reanimation=="Simple"then 
 			--task.wait()
