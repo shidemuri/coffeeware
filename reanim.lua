@@ -1,17 +1,17 @@
 return function()
 	local function ra(part)
 		local epic = Instance.new('SelectionBox', game.Players.LocalPlayer.Character)
-        epic.Name = 'okayu uwu'
-        epic.Adornee = part
-        epic.LineThickness = 0.05
-        local speed = 4
-        coroutine.wrap(function()
+		epic.Name = 'okayu uwu'
+		epic.Adornee = part
+		epic.LineThickness = 0.05
+		local speed = 4
+		coroutine.wrap(function()
 		while epic do
-            for i = 0,1,0.001*speed do
-                epic.Color3 = Color3.fromHSV(i,1,1)
-                task.wait()
-            end
-        end
+			for i = 0,1,0.001*speed do
+				epic.Color3 = Color3.fromHSV(i,1,1)
+				task.wait()
+			end
+		end
 		end)()
 	end
 	--getgenv().Fling = "HumanoidRootPart"
@@ -27,14 +27,14 @@ return function()
 	getgenv().PartGUI = false
 	getgenv().FakeGod = false
 	getgenv().GodMode = getgenv().Reanimation == 'PermaDeath' and true or false
-	getgenv().Velocity = -25.05  --goofy velocity
+	getgenv().Velocity = -50  --goofy velocity
 	getgenv().Collisions = false
 	getgenv().Claim2 = false
 	getgenv().Notification = true
 	getgenv().AutoAnimate = true
 	getgenv().Network = true
-	getgenv().AntiSleep = true
-	getgenv().MovementVelocity = true
+	getgenv().AntiSleep = false
+	getgenv().MovementVelocity = false
 	getgenv().ArtificialHeartBeat = true
 	getgenv().R6 = game.Players.LocalPlayer.Character.Humanoid.RigType == Enum.HumanoidRigType.R6 and true or false
 	getgenv().AutoReclaim = false
@@ -44,15 +44,7 @@ return function()
 	local ___old; ___old=hookmetamethod(game,'__index',newcclosure(function(s,k)if checkcaller()and s==game:GetService('Workspace')and k== 'non'then return getgenv().CloneRig end return ___old(s,k)end)) getgenv().___hooked=true end
 	loadstring(game:HttpGet("https://raw.githubusercontent.com/CenteredSniper/Kenzen/master/newnetlessreanimate.lua",true))()
 	if getgenv().Reanimation=="PermaDeath"or getgenv().Reanimation==nil then 
-		coroutine.wrap(function()
-		--getgenv().ShowReal=true;
-		--loadstring(game:HttpGet("https://raw.githubusercontent.com/Tescalus/Pendulum-Hubs-Source/main/NetlessReanimV2(ThanksProductionTakeOne%20%233330%20for%20help).lua"))()
-		--[[for _,v in next, game.Players.LocalPlayer.Character[game.Players.LocalPlayer.Name]:GetDescendants() do
-			if v:IsA('BodyVelocity') then
-				v.P = Vector3.new(20,0,0) --jitteryless netless (i hope)
-			end
-		end]]
-		task.wait(game.Players.RespawnTime+cloneref(game:GetService('Stats')).Network.ServerStatsItem['Data Ping']:GetValue()/750)
+		--task.wait(game.Players.RespawnTime+cloneref(game:GetService('Stats')).Network.ServerStatsItem['Data Ping']:GetValue()/750)
 		if getgenv().Fling or getgenv().TorsoFling then
 		local p=getgenv().RealRig:FindFirstChild("LowerTorso")or getgenv().RealRig.HumanoidRootPart;
 		p.Transparency=.5;
@@ -66,7 +58,7 @@ return function()
 		game["Run Service"].Heartbeat:Connect(function(t)
 			if r then 
 				if s==false then 
-					if (q.Target.Parent:FindFirstChildOfClass("Humanoid")or q.Target.Parent.Parent:FindFirstChildOfClass("Humanoid")) and q.Target.Parent ~= game.Players.LocalPlayer.Character then 
+					if (q.Target.Parent:FindFirstChildOfClass("Humanoid")or q.Target.Parent.Parent:FindFirstChildOfClass("Humanoid")) and not q.Target:FindFirstAncestor('ExProReanimate') then 
 						s=true;
 						print("Began flinging")
 						local u=p;
@@ -100,7 +92,6 @@ return function()
 				else p.CFrame=game.Players.LocalPlayer.Character.Torso.CFrame end 
 			end 
 		end)
-		end)()
 	end
 	elseif Reanimation=="Simple"then 
 			--task.wait()
@@ -128,7 +119,7 @@ return function()
 				--print(r, s, q.Target, q.Target.Parent)
 				if r then 
 					if s==false then 
-						if (q.Target.Parent:FindFirstChildOfClass("Humanoid")or q.Target.Parent.Parent:FindFirstChildOfClass("Humanoid")) and q.Target.Parent ~= game.Players.LocalPlayer.Character then 
+						if (q.Target.Parent:FindFirstChildOfClass("Humanoid")or q.Target.Parent.Parent:FindFirstChildOfClass("Humanoid")) and not q.Target:FindFirstAncestor('ExProReanimate') then 
 							s=true;
 							print("Began flinging")
 							local u=p;
