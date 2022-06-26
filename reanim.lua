@@ -88,7 +88,7 @@ return function()
 						w.Part0=y;
 						w.Part1=v;
 						w.C0=CFrame.new(0,0,-8)*CFrame.Angles(math.rad(0),math.rad(0),math.rad(0))
-						for _=0,65 do
+						for _=0,40 do
 						u.CFrame=x.CFrame:Lerp(x.CFrame,1)
 						wait(.02)
 						u.CFrame=v.CFrame:Lerp(y.CFrame,1)
@@ -149,7 +149,7 @@ return function()
 							w.Part0=y;
 							w.Part1=v;
 							w.C0=CFrame.new(0,0,-8)*CFrame.Angles(math.rad(0),math.rad(0),math.rad(0))
-							for _=0,65 do
+							for _=0,40 do
 							u.CFrame=x.CFrame:Lerp(x.CFrame,1)wait(.02)u.CFrame=v.CFrame:Lerp(y.CFrame,1)wait(.02)
 							end
 							print("Stopped flinging!")
