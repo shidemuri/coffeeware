@@ -1317,5 +1317,13 @@ game.Players.LocalPlayer.Character.Humanoid.Died:Connect(function()
 	d:Disconnect()
 	e:Disconnect()
 	f:Disconnect()
-
 end)
+
+if getgenv().CloneRig:FindFirstChild('FireMohawk') then
+	getgenv().CloneRig.FireMohawk.Handle:BreakJoints()
+	getgenv().RealRig.FireMohawk.Handle:FindFirstChildOfClass('SpecialMesh'):Destroy()
+	local weld = Instance.new('Weld',getgenv().CloneRig)
+	weld.Part0 = getgenv().CloneRig.Bike.Handle
+	weld.Part1 = getgenv().CloneRig.FireMohawk.Handle
+	weld.C0 = CFrame.new(0,0,0)
+end
