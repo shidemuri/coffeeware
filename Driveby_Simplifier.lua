@@ -3,6 +3,11 @@ getgenv()._reanimate()
 
 -- padero#0001
 
+local rock = false
+
+
+
+
 --//====================================================\\--
 --||                       BASIS
 --\\====================================================//--
@@ -100,7 +105,7 @@ tossremainder = false
 lastframe = tick()
 script.ArtificialHB:Fire()
 
-game:GetService("RunService").Heartbeat:connect(function(s, p)
+local hb = game:GetService("RunService").Heartbeat:connect(function(s, p)
 	tf = tf + s
 	if tf >= frame then
 		if allowframeloss then
@@ -119,6 +124,9 @@ game:GetService("RunService").Heartbeat:connect(function(s, p)
 		end
 	end
 end)
+
+game.Players.LocalPlayer.Character.Humanoid.Died:Connect(function() hb:Disconnect() end)
+
 
 function PositiveAngle(NUMBER)
 	if NUMBER >= 0 then
@@ -579,6 +587,16 @@ Weldd3.Part1 = hat4 -- (Hat)
 Weldd3.Part0 = SMG -- What your welding the hat to (has to be a BasePart)
 Weldd3.C0 = CFrame.new(0,0,1)*CFrame.Angles(math.rad(90),math.rad(90),math.rad(-45)) -- Offset & Angles
 
+if getgenv().CloneRig:FindFirstChild('RockAccessory') then
+	getgenv().CloneRig.RockAccessory.Handle:BreakJoints()
+	getgenv().RealRig.RockAccessory.Handle:FindFirstChildOfClass('SpecialMesh'):Destroy()
+	rockweld = Instance.new("Weld", getgenv().CloneRig)
+	rockweld.Part0 = BAZOOKA
+	rockweld.Part1 = getgenv().CloneRig.RockAccessory.Handle
+	rockweld.C0 = CFrame.new(0,0,0)
+	rock = true
+	print(1)
+end
 
 --//====================================================\\--
 --||                     ABILITIES
@@ -1013,10 +1031,16 @@ function GrabBazooka()
 			end
 			local GOTO = MOUSEPOS
 			local ROCKET = MISILEPROP:Clone()
+			if rock then
+				rockweld.Part0 = ROCKET
+			end
 			ROCKET.Parent = Effects
 			ROCKET.CFrame = CF(BAZOOKA.CFrame*CF(0,0,-2).p,GOTO)
 			NewSound({ID = 440145223,PARENT = BAZOOKA,VOLUME = 5,PITCH = MRANDOM(9,11)/10,LOOP = false,MAXDISTANCE = 80,EMITTERSIZE = 15,PLAYING = true,PLAYONREMOVE = false,DOESDEBRIS = true})
 			NewSound({ID = 440145223,PARENT = ROCKET,VOLUME = 5,PITCH = MRANDOM(9,11)/10,LOOP = false,MAXDISTANCE = 80,EMITTERSIZE = 15,PLAYING = true,PLAYONREMOVE = false,DOESDEBRIS = true})
+			
+			
+
 			for i = 1, 200 do
 				Swait()
 				local HIT,POS = Raycast(ROCKET.Position,ROCKET.CFrame.lookVector,4,CHARACTER)
@@ -1029,6 +1053,9 @@ function GrabBazooka()
 				else
 					ROCKET.CFrame = ROCKET.CFrame*CF(0,0,-3)
 				end
+			end
+			if rock then
+				rockweld.Part0 = BAZOOKA
 			end
 			ROCKET.Transparency = 1
 			ROCKET.Hind:Remove()
