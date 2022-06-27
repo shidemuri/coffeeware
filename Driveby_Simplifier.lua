@@ -901,6 +901,7 @@ function LooseBike()
 				B.Hit:Connect(function(PART)
 					if PART.Parent:FindFirstChildOfClass("Humanoid") == nil and PART.Parent.Parent:FindFirstChildOfClass("Humanoid") == nil then
 						if PART.Anchored == false then
+							--[[
 							PART:BreakJoints()
 							local BV = IT("BodyVelocity")
 							BV.MaxForce = BV.MaxForce * 500
@@ -908,10 +909,10 @@ function LooseBike()
 							BV.Parent = PART
 							Debris:AddItem(BV,0.5)
 							if MRANDOM(1,3) == 1 then
-								--local FIRE = MODULE.Fire:Clone()
-								--FIRE.Parent = PART
-								--FIRE.Enabled = true
-							end
+								local FIRE = MODULE.Fire:Clone()
+								FIRE.Parent = PART
+								FIRE.Enabled = true
+							end]]
 						end
 					end
 				end)
@@ -1070,12 +1071,12 @@ function GrabBazooka()
 			B.Hit:Connect(function(PART)
 			if PART.Parent:FindFirstChildOfClass("Humanoid") == nil and PART.Parent.Parent:FindFirstChildOfClass("Humanoid") == nil then
 					if PART.Anchored == false then
-						PART:BreakJoints()
-						local BV = IT("BodyVelocity")
-						BV.MaxForce = BV.MaxForce * 500
-						BV.Velocity = CF(ROCKET.Position,PART.Position+VT(0,5,0)).lookVector*MRANDOM(35,75)
-						BV.Parent = PART
-						Debris:AddItem(BV,0.5)
+						--PART:BreakJoints()
+						--local BV = IT("BodyVelocity")
+						--BV.MaxForce = BV.MaxForce * 500
+						--BV.Velocity = CF(ROCKET.Position,PART.Position+VT(0,5,0)).lookVector*MRANDOM(35,75)
+						--BV.Parent = PART
+						--Debris:AddItem(BV,0.5)
 						--if MRANDOM(1,3) == 1 then
 						--	local FIRE = MODULE.Fire:Clone()
 						--	FIRE.Parent = PART
@@ -1090,11 +1091,12 @@ function GrabBazooka()
 				for E = 1, #VICTIMS do
 					local VROOT = VICTIMS[E][1]:FindFirstChild("Torso") or VICTIMS[E][1]:FindFirstChild("LowerTorso")
 					if VROOT then
+						--[[
 						local BV = IT("BodyVelocity")
 						BV.MaxForce = BV.MaxForce * 500
 						BV.Velocity = CF(ROCKET.Position,VROOT.Position+VT(0,5,0)).lookVector*MRANDOM(35,75)
 						BV.Parent = VROOT
-						Debris:AddItem(BV,0.5)
+						Debris:AddItem(BV,0.5)]]
 					end
 					ManSlaughter(VICTIMS[E][1])
 					--[[for index, CHILD in pairs(VICTIMS[E][1]:GetChildren()) do
