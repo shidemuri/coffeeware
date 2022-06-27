@@ -861,7 +861,7 @@ function LooseBike()
 			Weldd.C0 = CFrame.new(0,0,0)*CFrame.Angles(math.rad(0),math.rad(90),math.rad(0))
 
 			coroutine.wrap(function()
-				repeat task.wait() until (hat2.CFrame.p - workspace.non.HumanoidRootPart.CFrame.p).magnitude > 60
+				repeat task.wait() until (hat2.CFrame.p - workspace.non.HumanoidRootPart.CFrame.p).magnitude > 200
 				Weldd.Part0 = MOTOR -- What your welding the hat to (has to be a BasePart)
 				Weldd.C0 = CFrame.new(0,0,0)*CFrame.Angles(math.rad(0),math.rad(90),math.rad(0))
 			end)()
@@ -899,6 +899,8 @@ function LooseBike()
 				B.Parent = workspace
 				B.Position = FAKEMOTOR.Position
 				B.Hit:Connect(function(PART)
+					Weldd.Part0 = MOTOR -- What your welding the hat to (has to be a BasePart)
+					Weldd.C0 = CFrame.new(0,0,0)*CFrame.Angles(math.rad(0),math.rad(90),math.rad(0))
 					if PART.Parent:FindFirstChildOfClass("Humanoid") == nil and PART.Parent.Parent:FindFirstChildOfClass("Humanoid") == nil then
 						if PART.Anchored == false then
 							--[[
