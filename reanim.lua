@@ -31,22 +31,22 @@ return function()
                 getgenv().AntiSleep = true
 		getgenv().Velocity=-50
 	else 
-		getgenv().AntiSleep=true;
+		--getgenv().AntiSleep=true;
 		--getgenv().ExtremeNetless=false;
-                getgenv().Velocity = -35
+                --getgenv().Velocity = -35
 	end;
 	getgenv().Fling =game.Players.LocalPlayer.Character.Humanoid.RigType == Enum.HumanoidRigType.R15 and 'LowerTorso' or getgenv().Reanimation == "PermaDeath" and 'HumanoidRootPart' or 'Right Arm'
 	getgenv().ShowReal = true
 	getgenv().PartGUI = false
 	getgenv().FakeGod = false
 	getgenv().GodMode = getgenv().Reanimation == 'PermaDeath' and true or false
-	--getgenv().Velocity = -25.05
+	getgenv().Velocity = -35
 	getgenv().Collisions = false
 	getgenv().Claim2 = false
 	getgenv().Notification = true
 	getgenv().AutoAnimate = true
 	getgenv().Network = true
-	--getgenv().AntiSleep = false
+	getgenv().AntiSleep = false
 	getgenv().MovementVelocity = false
 	getgenv().ArtificialHeartBeat = true
 	getgenv().R6 = true --game.Players.LocalPlayer.Character.Humanoid.RigType == Enum.HumanoidRigType.R6 and true or false
