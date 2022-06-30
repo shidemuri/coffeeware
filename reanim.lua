@@ -98,11 +98,11 @@ return function()
 						end
 						print("Stopped flinging!")
 						s=false 
-					else  s = false if q.Target then p.CFrame = q.Hit else p.CFrame=game.Players.LocalPlayer.Character.Torso.CFrame end
+					else  s = false if q.Target then p.CFrame = q.Hit else p.CFrame=game.Players.LocalPlayer.Character.Torso.CFrame - Vector3.new(0,6,0) end
 					end 
 				end 
 				else if s==true then 
-				else p.CFrame=game.Players.LocalPlayer.Character.Torso.CFrame end 
+				else p.CFrame=game.Players.LocalPlayer.Character.Torso.CFrame - Vector3.new(0,6,0) end 
 			end 
 		end)
 	end
@@ -156,10 +156,10 @@ return function()
 							end
 							print("Stopped flinging!")
 							s=false;
-						else s = false if q.Target then p.CFrame = q.Hit else p.CFrame=game.Players.LocalPlayer.Character.Torso.CFrame end end
+						else s = false if q.Target then p.CFrame = q.Hit else p.CFrame=game.Players.LocalPlayer.Character.Torso.CFrame - Vector3.new(0,6,0) end end
 					end else 
 						if s==true then 
-					else p.CFrame=game.Players.LocalPlayer.Character.Torso.CFrame 
+					else p.CFrame=game.Players.LocalPlayer.Character.Torso.CFrame - Vector3.new(0,6,0)
 					end 
 				end 
 			end)
