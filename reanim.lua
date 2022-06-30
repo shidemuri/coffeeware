@@ -41,7 +41,7 @@ return function()
 	getgenv().FakeGod = false
 	getgenv().GodMode = getgenv().Reanimation == 'PermaDeath' and true or false
 	getgenv().Velocity = -35
-	getgenv().Collisions = false
+	getgenv().Collisions = true
 	getgenv().Claim2 = false
 	getgenv().Notification = true
 	getgenv().AutoAnimate = true
