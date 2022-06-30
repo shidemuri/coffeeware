@@ -1348,6 +1348,8 @@ game.Players.LocalPlayer.Character.Humanoid.Died:Connect(function()
 	d:Disconnect()
 	e:Disconnect()
 	f:Disconnect()
+	BUTTON:Disconnect()
+	MOTORHIT:Disconnect()
 end)
 
 if getgenv().CloneRig:FindFirstChild('FireMohawk') then
