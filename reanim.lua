@@ -1,167 +1,146 @@
 return function()
-	-- for some reason game:IsLoaded() broke so yeah
-	if getgenv().__isloadedhook ~= true then 
-		local old;
-		old = hookmetamethod(game, "__namecall", newcclosure(function(s,...)
-			if checkcaller() and s == game	and getnamecallmethod() == "IsLoaded" then
-				return old(s,"Workspace")
+	local Global = getgenv and getgenv() or _G
+	
+	local RunService = game:GetService("RunService")
+	local Players = game:GetService("Players")
+	local Player = Players.LocalPlayer
+	local Character = Player.Character
+	local Mouse = Player:GetMouse()
+
+	local MouseDown = false;
+	local FlingEnabled = false
+	
+	Mouse.Button1Down:Connect(function() MouseDown=true end)
+	Mouse.Button1Up:Connect(function() MouseDown=false end)
+	
+	local SplitTorsoHats = {
+		{"19999406",CFrame.Angles(math.rad(90),0,0)},
+		{"26400954",CFrame.Angles(math.rad(90),0,0)},
+		{"81504106",CFrame.Angles(math.rad(90),0,0)},
+		{"20367587",CFrame.Angles(math.rad(90),0,0)},
+		{"15730704",CFrame.Angles(math.rad(90),0,0)},
+		{"6858317867",CFrame.Angles(math.rad(90),0,0)},
+		{"6858318826",CFrame.Angles(math.rad(90),0,0)},
+		{"6926051356",CFrame.Angles(math.rad(90),0,0)},
+		{"45915003",CFrame.Angles(math.rad(90),0,0)},
+		{"44106323",CFrame.Angles(math.rad(90),0,0)},
+		{"376188163",CFrame.Angles(math.rad(90),0,0)},
+		{"417448095",CFrame.Angles(math.rad(90),0,0)},
+		{"47991609",CFrame.Angles(math.rad(90),0,0)},
+		{"3210183293",CFrame.Angles(math.rad(90),0,0)},
+		{"21778516",CFrame.Angles(math.rad(90),0,0)},
+		{"19999406",CFrame.Angles(math.rad(90),0,0)},
+		{"19999406",CFrame.Angles(math.rad(90),0,0)},
+		{"7287236788",CFrame.Angles(0,0,0)},
+		{"31740496",CFrame.Angles(0,0,0)},
+		{"3612040655",CFrame.Angles(0,0,0)},
+		{"30303412",CFrame.Angles(0,0,0)},
+		{"4802604574",CFrame.Angles(0,0,0)},
+		{"7250556324",CFrame.Angles(0,0,0)},
+		{"7402858015",CFrame.Angles(0,0,0)},
+		{"14456185",CFrame.Angles(0,0,0)},
+	}
+	
+	
+	local function RainbowSelection(Part)
+		local Selection = Instance.new("SelectionBox")
+		Selection.Name = "Padero Pride Month Special (real)"
+		Selection.Adornee = Part
+		Selection.LineThickness = 0.05
+		task.spawn(function()
+			while Character do
+				for i = 0,1,0.004 do
+					Selection.Color3 = Color3.fromHSV(i,1,1)
+					task.wait()
+				end
 			end
-			return old(s,...)
-		end))
-		getgenv().__isloadedhook = true
+		end)
+		Selection.Parent = Character
 	end
-	local function ra(part)
-		local epic = Instance.new('SelectionBox', game.Players.LocalPlayer.Character)
-		epic.Name = 'okayu uwu'
-		epic.Adornee = part
-		epic.LineThickness = 0.05
-		local speed = 4
-		coroutine.wrap(function()
-		while epic do
-			for i = 0,1,0.001*speed do
-				epic.Color3 = Color3.fromHSV(i,1,1)
-				task.wait()
+	
+	do -- Settings
+		Global.Fling = Character.Humanoid.RigType == Enum.HumanoidRigType.R15 and 'LowerTorso' or Global.Reanimation == "PermaDeath" and 'HumanoidRootPart' or 'Right Arm'
+		Global.ShowReal = true
+		Global.GodMode = Global.Reanimation == 'PermaDeath' and true or false
+		Global.Velocity = -35
+		Global.Collisions = false
+		Global.AntiSleep = true
+		Global.MovementVelocity = false
+		Global.ArtificialHeartBeat = true
+		Global.EnableSpin = true
+	end
+	
+	do -- idk what the fuck this code is so im just gonna include it
+		if Global.___hooked ~= true then
+			local ___old;
+			___old=hookmetamethod(game,'__index',newcclosure(function(s,k)
+				if checkcaller() and s==game:GetService('Workspace') and k== 'non' then
+					return Global.CloneRig
+				end 
+				return ___old(s,k)
+			end))
+			Global.___hooked=true 
+		end
+	end
+	
+	loadstring(game:HttpGet("https://raw.githubusercontent.com/CenteredSniper/Kenzen/master/newnetlessreanimate.lua",true))()
+	
+	local Event = Global.MiliWait
+	
+	do -- Replace Arm for Non-Perma Reanimate
+		if Global.Reanimation == "Simple" and Character.Humanoid.RigType == Enum.HumanoidRigType.R6 then 
+			local ReplacementHat
+			for i,Hat in ipairs(Global.RealRig:GetChildren()) do
+				if Hat:IsA("Accessory") then
+					local Texture = Hat.Handle:FindFirstChildOfClass("SpecialMesh")
+					if Texture then
+						for i,v in ipairs(SplitTorsoHats) do
+							if v[1] == string.match(Texture.TextureId,"%d+") then
+								table.remove(SplitTorsoHats,i)
+								ReplacementHat = {Hat.Handle,v[2]}
+							end
+						end
+					end
+				end
+			end
+			if ReplacementHat then
+				ReplacementHat[1].CloneHat.Value.AccessoryWeld.Part1 = Player.Character["Right Arm"]
+				ReplacementHat[1].CloneHat.Value.AccessoryWeld.C0=ReplacementHat[2]
+				ReplacementHat[1]:FindFirstChildOfClass("SpecialMesh"):Destroy()
 			end
 		end
-		end)()
 	end
-	--getgenv().Fling = "HumanoidRootPart"
-	if game.Players.LocalPlayer.Character.Humanoid.RigType==Enum.HumanoidRigType.R15 then 
-		--getgenv().ExtremeNetless=true;
-                getgenv().AntiSleep = true
-		getgenv().Velocity=-50
-	else 
-		--getgenv().AntiSleep=true;
-		--getgenv().ExtremeNetless=false;
-                --getgenv().Velocity = -35
-	end;
-	getgenv().Fling =game.Players.LocalPlayer.Character.Humanoid.RigType == Enum.HumanoidRigType.R15 and 'LowerTorso' or getgenv().Reanimation == "PermaDeath" and 'HumanoidRootPart' or 'Right Arm'
-	getgenv().ShowReal = true
-	getgenv().PartGUI = false
-	getgenv().FakeGod = false
-	getgenv().GodMode = getgenv().Reanimation == 'PermaDeath' and true or false
-	getgenv().Velocity = -35
-	getgenv().Collisions = true
-	getgenv().Claim2 = false
-	getgenv().Notification = true
-	getgenv().AutoAnimate = true
-	getgenv().Network = true
-	getgenv().AntiSleep = false
-	getgenv().MovementVelocity = false
-	getgenv().ArtificialHeartBeat = true
-	getgenv().R6 = true --game.Players.LocalPlayer.Character.Humanoid.RigType == Enum.HumanoidRigType.R6 and true or false
-	getgenv().AutoReclaim = false
-	getgenv().HatCollision = false
-	getgenv().EnableSpin = true
-	if getgenv().___hooked ~= true then
-	local ___old; ___old=hookmetamethod(game,'__index',newcclosure(function(s,k)if checkcaller()and s==game:GetService('Workspace')and k== 'non'then return getgenv().CloneRig end return ___old(s,k)end)) getgenv().___hooked=true end
-	loadstring(game:HttpGet("https://raw.githubusercontent.com/CenteredSniper/Kenzen/master/newnetlessreanimate.lua",true))()
-	if getgenv().Reanimation=="PermaDeath"or getgenv().Reanimation==nil then 
-		--task.wait(game.Players.RespawnTime+cloneref(game:GetService('Stats')).Network.ServerStatsItem['Data Ping']:GetValue()/750)
-		if getgenv().Fling or getgenv().TorsoFling then
-		local p=getgenv().RealRig:FindFirstChild("LowerTorso")or getgenv().RealRig.HumanoidRootPart;
-		p.Transparency=.5;
-		--p.BodyAngularVelocity.AngularVelocity=Vector3.new(999999999999999999999999999999999999,999999999999999999999999999999999999,999999999999999999999999999999999999)
-		ra(p)
-		local q=game.Players.LocalPlayer:GetMouse()
-		local r=false;
-		q.Button1Down:Connect(function()r=true end)
-		q.Button1Up:Connect(function()r=false end)
-		local s=false;
-		game["Run Service"].Heartbeat:Connect(function(t)
-			if r then 
-				if s==false then 
-					if q.Target and (q.Target.Parent:FindFirstChildOfClass("Humanoid")or q.Target.Parent.Parent:FindFirstChildOfClass("Humanoid")) and not q.Target:FindFirstAncestor(game.Players.LocalPlayer.Character.Name) then 
-						s=true;
-						print("Began flinging")
-						local u=p;
-						local v=q.Target.Parent:FindFirstChild("Torso")or q.Target.Parent.Parent:FindFirstChild("Torso")or q.Target.Parent.Parent:FindFirstChild("LowerTorso")or q.Target.Parent:FindFirstChild("LowerTorso")
-						local weld=Instance.new("Weld",v)
-						local w=Instance.new("Weld",v)
-						local x=Instance.new("Part",v)
-						x.Transparency=1;
-						x.CanCollide=false;
-						local y=Instance.new("Part",v)
-						y.Transparency=1;
-						y.CanCollide=false;
-						weld.Part0=x;
-						weld.Part1=v;
-						weld.C0=CFrame.new(0,0,8)*CFrame.Angles(math.rad(0),math.rad(0),math.rad(0))
-						w.Part0=y;
-						w.Part1=v;
-						w.C0=CFrame.new(0,0,-8)*CFrame.Angles(math.rad(0),math.rad(0),math.rad(0))
-						for _=0,30 do
-						u.CFrame=x.CFrame:Lerp(x.CFrame,1)
-						wait(.1)
-						u.CFrame=v.CFrame:Lerp(y.CFrame,1)
-						wait(.1)
+	
+	do -- Fling
+		local FlingPart = Global.RealRig:FindFirstChild(tostring(Global.Fling))
+		if FlingPart then
+			FlingPart.Transparency=.5;
+			RainbowSelection(FlingPart)
+			Mouse.TargetFilter = Player.Character
+
+			Event:Connect(function()
+				if MouseDown then
+					local OtherPlayer = Mouse.Target and Mouse.Target.Parent:FindFirstChild("Humanoid") and Mouse.Target.Parent
+					if OtherPlayer then
+						FlingEnabled = true
+						for i=1,30 do
+							FlingPart.CFrame= OtherPlayer.HumanoidRootPart.CFrame * CFrame.new(0,0,8)
+							task.wait(.1)
+							FlingPart.CFrame= OtherPlayer.HumanoidRootPart.CFrame * CFrame.new(0,0,-8)
+							task.wait(.1)
 						end
-						print("Stopped flinging!")
-						s=false 
-					else  s = false if q.Target then p.CFrame = q.Hit else p.CFrame=game.Players.LocalPlayer.Character.Torso.CFrame - Vector3.new(0,6,0) end
-					end 
-				end 
-				else if s==true then 
-				else p.CFrame=game.Players.LocalPlayer.Character.Torso.CFrame - Vector3.new(0,6,0) end 
-			end 
-		end)
-	end
-	elseif Reanimation=="Simple"then 
-			--task.wait()
-			if getgenv().Fling or getgenv().TorsoFling then
-			local z=game.Players.LocalPlayer;
-			local A=z.Character;
-			local B=getgenv().CloneRig["Hat1"].Handle;
-			B:BreakJoints()
-			local Weld=Instance.new("Weld",getgenv().CloneRig)
-			Weld.Part1=B;
-			Weld.Part0=game.Players.LocalPlayer.Character["Right Arm"]
-			Weld.C0=CFrame.new(0,0,0)*CFrame.Angles(math.rad(90),math.rad(0),0)
-			print("Ran with no errors")
-			local p=getgenv().RealRig["Right Arm"]
-			ra(p)
-			local C=getgenv().RealRig["Hat1"].Handle.Mesh;
-			C:Destroy()
-			p.Transparency=.5;
-			--p.BodyAngularVelocity.AngularVelocity=Vector3.new(9999999999999999999999999999999,99999999999999999999999999999999,99999999999999999999999999999999)
-			local q=game.Players.LocalPlayer:GetMouse()
-			local r=false;q.Button1Down:Connect(function()r=true end)
-			q.Button1Up:Connect(function()r=false end)
-			local s=false;
-			game["Run Service"].Heartbeat:Connect(function(t)
-				--print(r, s, q.Target, q.Target.Parent)
-				if r then 
-					if s==false then 
-						if q.Target and (q.Target.Parent:FindFirstChildOfClass("Humanoid")or q.Target.Parent.Parent:FindFirstChildOfClass("Humanoid")) and not q.Target:FindFirstAncestor(game.Players.LocalPlayer.Character.Name) then 
-							s=true;
-							print("Began flinging")
-							local u=p;
-							local v=q.Target.Parent:FindFirstChild("Torso")or q.Target.Parent.Parent:FindFirstChild("Torso")or q.Target.Parent.Parent:FindFirstChild("LowerTorso")or q.Target.Parent:FindFirstChild("LowerTorso")
-							local weld=Instance.new("Weld",v)
-							local w=Instance.new("Weld",v)
-							local x=Instance.new("Part",v)
-							x.Transparency=1;
-							x.CanCollide=false;
-							local y=Instance.new("Part",v)
-							y.Transparency=1;
-							y.CanCollide=false;
-							weld.Part0=x;
-							weld.Part1=v;
-							weld.C0=CFrame.new(0,0,8)*CFrame.Angles(math.rad(0),math.rad(0),math.rad(0))
-							w.Part0=y;
-							w.Part1=v;
-							w.C0=CFrame.new(0,0,-8)*CFrame.Angles(math.rad(0),math.rad(0),math.rad(0))
-							for _=0,30 do
-							u.CFrame=x.CFrame:Lerp(x.CFrame,1)wait(.1)u.CFrame=v.CFrame:Lerp(y.CFrame,1)wait(.1)
-							end
-							print("Stopped flinging!")
-							s=false;
-						else s = false if q.Target then p.CFrame = q.Hit else p.CFrame=game.Players.LocalPlayer.Character.Torso.CFrame - Vector3.new(0,6,0) end end
-					end else 
-						if s==true then 
-					else p.CFrame=game.Players.LocalPlayer.Character.Torso.CFrame - Vector3.new(0,6,0)
-					end 
-				end 
+						FlingEnabled = false
+					else
+						FlingEnabled = false
+						if Mouse.Target then
+							FlingPart.CFrame = Mouse.Hit
+						else
+							FlingPart.CFrame= Player.Character.Torso.CFrame - Vector3.new(0,6,0)
+						end
+					end
+				elseif not FlingEnabled then
+					FlingPart.CFrame= Player.Character.Torso.CFrame - Vector3.new(0,6,0) 
+				end
 			end)
 		end
 	end
