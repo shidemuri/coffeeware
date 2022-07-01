@@ -1,4 +1,4 @@
-getgenv()._reanimate = function()
+return function()
 	local Global = getgenv and getgenv() or _G
 	
 	local RunService = game:GetService("RunService")
