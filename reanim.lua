@@ -181,4 +181,3 @@ getgenv()._reanimate = function()
 		end
 	--end
 end
-getgenv()._reanimate()
