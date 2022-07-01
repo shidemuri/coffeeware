@@ -16,7 +16,7 @@ return function()
 	local SplitTorsoHats = {
 		{"19999406",CFrame.Angles(math.rad(90),0,0)},
 		{"26400954",CFrame.Angles(math.rad(90),0,0)},
-		{"81504106",CFrame.Angles(math.rad(90),0,0)},
+		{"81504106",CFrame.new(0,0,0.6)*CFrame.Angles(math.rad(90),0,0)},
 		{"20367587",CFrame.Angles(math.rad(90),0,0)},
 		{"15730704",CFrame.Angles(math.rad(90),0,0)},
 		{"6858317867",CFrame.Angles(math.rad(90),0,0)},
