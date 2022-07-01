@@ -1,4 +1,4 @@
-return function()
+getgenv()._reanimate = function()
 	local Global = getgenv and getgenv() or _G
 	
 	local RunService = game:GetService("RunService")
@@ -16,7 +16,7 @@ return function()
 	local SplitTorsoHats = {
 		{"19999406",CFrame.Angles(math.rad(90),0,0)},
 		{"26400954",CFrame.Angles(math.rad(90),0,0)},
-		{"81504106",CFrame.Angles(math.rad(90),0,0)},
+		{"81504106",CFrame.new(0,0,0.6)*CFrame.Angles(math.rad(90),0,0)},
 		{"20367587",CFrame.Angles(math.rad(90),0,0)},
 		{"15730704",CFrame.Angles(math.rad(90),0,0)},
 		{"6858317867",CFrame.Angles(math.rad(90),0,0)},
@@ -44,7 +44,7 @@ return function()
 	
 	local function RainbowSelection(Part)
 		local Selection = Instance.new("SelectionBox")
-		Selection.Name = "Padero Pride Month Special (real)"
+		Selection.Name = "Padero Pride Month Special"
 		Selection.Adornee = Part
 		Selection.LineThickness = 0.05
 		task.spawn(function()
@@ -82,10 +82,11 @@ return function()
 			Global.___hooked=true 
 		end
 	end
+	--local Event = Global.MiliWait
 	
 	loadstring(game:HttpGet("https://raw.githubusercontent.com/CenteredSniper/Kenzen/master/newnetlessreanimate.lua",true))()
 	
-	local Event = Global.MiliWait
+	
 	
 	do -- Replace Arm for Non-Perma Reanimate
 		if Global.Reanimation == "Simple" and Character.Humanoid.RigType == Enum.HumanoidRigType.R6 then 
@@ -110,38 +111,74 @@ return function()
 			end
 		end
 	end
-	
-	do -- Fling
+	--do -- Fling
 		local FlingPart = Global.RealRig:FindFirstChild(tostring(Global.Fling))
 		if FlingPart then
 			FlingPart.Transparency=.5;
 			RainbowSelection(FlingPart)
 			Mouse.TargetFilter = Player.Character
-
-			Event:Connect(function()
+			local OtherPlayer;
+			local looping = false;
+			game:GetService('RunService').Heartbeat:Connect(function()
 				if MouseDown then
-					local OtherPlayer = Mouse.Target and Mouse.Target.Parent:FindFirstChild("Humanoid") and Mouse.Target.Parent
-					if OtherPlayer then
-						FlingEnabled = true
-						for i=1,30 do
-							FlingPart.CFrame= OtherPlayer.HumanoidRootPart.CFrame * CFrame.new(0,0,8)
-							task.wait(.1)
-							FlingPart.CFrame= OtherPlayer.HumanoidRootPart.CFrame * CFrame.new(0,0,-8)
-							task.wait(.1)
-						end
-						FlingEnabled = false
+					FlingEnabled = false
+					if Mouse.Target then
+						FlingPart.CFrame = Mouse.Hit
+						if Mouse.Target.Parent and Mouse.Target.Parent:FindFirstChild('Humanoid') then
+							OtherPlayer = Mouse.Target.Parent:FindFirstChild('Torso') or Mouse.Target.Parent:FindFirstChild('UpperTorso')
+						elseif Mouse.Target.Parent.Parent and Mouse.Target.Parent.Parent:FindFirstChild('Humanoid') then
+							OtherPlayer = Mouse.Target.Parent.Parent:FindFirstChild('Torso') or Mouse.Target.Parent.Parent:FindFirstChild('UpperTorso')
+						else OtherPlayer = nil end
+						coroutine.wrap(function()
+							if not OtherPlayer then return end
+							local old = OtherPlayer
+							wait(0.5)
+							print(1)
+							if not MouseDown and OtherPlayer ~= old then
+								print(2)
+								OtherPlayer = old
+								FlingEnabled = true
+							end
+						end)()
 					else
-						FlingEnabled = false
-						if Mouse.Target then
-							FlingPart.CFrame = Mouse.Hit
-						else
 							FlingPart.CFrame= Player.Character.Torso.CFrame - Vector3.new(0,6,0)
-						end
 					end
-				elseif not FlingEnabled then
-					FlingPart.CFrame= Player.Character.Torso.CFrame - Vector3.new(0,6,0) 
+					if OtherPlayer then FlingEnabled = true; looping = false end
+				elseif FlingEnabled == true then
+					if looping then return end
+					--FlingEnabled = true
+					local w = Instance.new('Weld',OtherPlayer)
+					local w2 = Instance.new('Weld',OtherPlayer)
+					local p1 = Instance.new('Part',OtherPlayer)
+					local p2 = Instance.new('Part',OtherPlayer)
+					p1.Transparency = 1
+					p1.CanCollide=false
+					p2.Transparency = 1
+					p2.CanCollide=false
+					w.Part0=OtherPlayer
+					w.Part1=p1
+					w2.Part0=OtherPlayer
+					w2.Part1=p2
+					w.C0 = CFrame.new(0,0,8)
+					w2.C0 = CFrame.new(0,0,-8)
+					for _=1,15 do
+						if not OtherPlayer then break end
+						looping = true
+						--if OtherPlayer == nil then break end
+						FlingPart.Position= p1.Position--:Lerp(p1.CFrame,1)
+						task.wait(.07)
+						FlingPart.Position= p2.Position--:Lerp(p2.CFrame,1)
+						task.wait(.07)
+					end
+					for _,v in ipairs({w,w2,p1,p2}) do game:GetService('Debris'):AddItem(v,0) end
+					OtherPlayer = nil
+					FlingEnabled = false
+					looping = false
+				else
+					if not looping and not FlingEnabled then FlingPart.CFrame= Player.Character.Torso.CFrame - Vector3.new(0,6,0) end
 				end
 			end)
 		end
-	end
+	--end
 end
+getgenv()._reanimate()
