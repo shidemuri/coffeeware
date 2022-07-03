@@ -63,7 +63,7 @@ return function()
 		Global.ShowReal = true
 		Global.GodMode = Global.Reanimation == 'PermaDeath' and true or false
 		Global.Velocity = -35
-		Global.Collisions = false
+		Global.Collisions = true
 		Global.AntiSleep = true
 		Global.MovementVelocity = false
 		Global.ArtificialHeartBeat = true
@@ -111,15 +111,17 @@ return function()
 			end
 		end
 	end
-	--do -- Fling
+	do -- Fling
 		local FlingPart = Global.RealRig:FindFirstChild(tostring(Global.Fling))
 		if FlingPart then
+			local connection;
 			FlingPart.Transparency=.5;
 			RainbowSelection(FlingPart)
 			Mouse.TargetFilter = Player.Character
+			if Global.FlingType == 'Mixed' or Global.FlingType == nil then
 			local OtherPlayer;
 			local looping = false;
-			game:GetService('RunService').Heartbeat:Connect(function()
+			connection = game:GetService('RunService').Heartbeat:Connect(function()
 				if MouseDown then
 					FlingEnabled = false
 					if Mouse.Target then
@@ -166,9 +168,9 @@ return function()
 						looping = true
 						--if OtherPlayer == nil then break end
 						FlingPart.Position= p1.Position--:Lerp(p1.CFrame,1)
-						task.wait(.07)
+						task.wait(.1)
 						FlingPart.Position= p2.Position--:Lerp(p2.CFrame,1)
-						task.wait(.07)
+						task.wait(.1)
 					end
 					for _,v in ipairs({w,w2,p1,p2}) do game:GetService('Debris'):AddItem(v,0) end
 					OtherPlayer = nil
@@ -178,6 +180,65 @@ return function()
 					if not looping and not FlingEnabled then FlingPart.CFrame= Player.Character.Torso.CFrame - Vector3.new(0,6,0) end
 				end
 			end)
+			elseif Global.FlingType == 'Prediction only' then
+				local flinging = false
+				local looping = false
+				connection = game:GetService('RunService').Heartbeat:Connect(function()
+					if MouseDown then
+						if flinging == false then
+							if Mouse.Target and (Mouse.Target.Parent:FindFirstChildOfClass("Humanoid")or Mouse.Target.Parent.Parent:FindFirstChildOfClass("Humanoid")) and not Mouse.Target:FindFirstAncestor(game.Players.LocalPlayer.Character.Name) then 
+								flinging = true
+								local part = Mouse.Target.Parent:FindFirstChild("Torso")or Mouse.Target.Parent.Parent:FindFirstChild("Torso")or Mouse.Target.Parent.Parent:FindFirstChild("UpperTorso")or Mouse.Target.Parent:FindFirstChild("UpperTorso")
+								--print(part)
+								local w = Instance.new("Weld",part)
+								local w2 = Instance.new("Weld",part)
+								local p1 = Instance.new('Part',part)
+								local p2 = Instance.new('Part',part)
+								p1.Transparency = 1
+								p1.CanCollide=false
+								p2.Transparency = 1
+								p2.CanCollide=false
+								w.Part0=part
+								w.Part1=p1
+								w2.Part0=part
+								w2.Part1=p2
+								w.C0 = CFrame.new(0,0,8)
+								w2.C0 = CFrame.new(0,0,-8)
+								for _=1,15 do
+									FlingPart.Position = p1.Position
+									task.wait(.1)
+									FlingPart.Position = p2.Position
+									task.wait(.1)
+								end
+								for _,v in ipairs({w,w2,p1,p2}) do game:GetService('Debris'):AddItem(v,0) end
+								flinging = false
+							else flinging = false 
+								if Mouse.Target then 
+									FlingPart.CFrame = Mouse.Hit 
+								else 
+									FlingPart.CFrame = Player.Character.Torso.CFrame - Vector3.new(0,6,0) 
+								end 
+							end
+						end
+					else 
+						if flinging == true then 
+						else 
+							FlingPart.CFrame = Player.Character.Torso.CFrame - Vector3.new(0,6,0) 
+						end
+					end
+				end)
+			elseif Global.FlingType == 'Click only' then
+				connection = game:GetService('RunService').Heartbeat:Connect(function()
+					if MouseDown then
+						if Mouse.Target then
+							FlingPart.CFrame = Mouse.Hit	
+						end
+					else
+						FlingPart.CFrame= Player.Character.Torso.CFrame - Vector3.new(0,6,0)
+					end
+				end)
+			end
+			game.Players.LocalPlayer.Character.Died:Connect(function()connection:Disconnect()end)
 		end
-	--end
+	end
 end
