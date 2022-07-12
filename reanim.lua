@@ -47,6 +47,7 @@ return function()
 		Selection.Name = "Padero Pride Month Special"
 		Selection.Adornee = Part
 		Selection.FillTransparency = 0.7
+		Selection.DepthMode = 0
 		task.spawn(function()
 			while Character do
 				for i = 0,1,0.004 do
