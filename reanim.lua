@@ -53,6 +53,7 @@ return function()
 				for i = 0,1,0.004 do
 					Selection.FillColor = Color3.fromHSV(i,1,1)
 					Selection.OutlineColor = Color3.fromHSV(i,1,1)
+					Part.Transparency = 0
 					task.wait()
 				end
 			end
