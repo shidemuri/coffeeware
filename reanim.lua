@@ -43,14 +43,15 @@ return function()
 	
 	
 	local function RainbowSelection(Part)
-		local Selection = Instance.new("SelectionBox")
+		local Selection = Instance.new("Highlight")
 		Selection.Name = "Padero Pride Month Special"
 		Selection.Adornee = Part
-		Selection.LineThickness = 0.05
+		Selection.FillTransparency = 0.7
 		task.spawn(function()
 			while Character do
 				for i = 0,1,0.004 do
-					Selection.Color3 = Color3.fromHSV(i,1,1)
+					Selection.FillColor = Color3.fromHSV(i,1,1)
+					Selection.OutlineColor = Color3.fromHSV(i,1,1)
 					task.wait()
 				end
 			end
@@ -112,11 +113,11 @@ return function()
 		end
 	end
 	do -- Fling
-		local FlingPart = Global.RealRig:FindFirstChild(tostring(Global.Fling))
-		if FlingPart then
+		Global.FlingPart = Global.RealRig:FindFirstChild(tostring(Global.Fling))
+		if Global.FlingPart then
 			local connection;
-			FlingPart.Transparency=.5;
-			RainbowSelection(FlingPart)
+			Global.FlingPart.Transparency=.5;
+			RainbowSelection(Global.FlingPart)
 			Mouse.TargetFilter = Player.Character
 			if Global.FlingType == 'Mixed' or Global.FlingType == nil then
 			local OtherPlayer;
@@ -143,7 +144,7 @@ return function()
 							end
 						end)()
 					else
-							FlingPart.CFrame= Player.Character.Torso.CFrame - Vector3.new(0,6,0)
+							Global.FlingPart.CFrame= Player.Character.Torso.CFrame - Vector3.new(0,6,0)
 					end
 					if OtherPlayer then FlingEnabled = true; looping = false end
 				elseif FlingEnabled == true then
@@ -167,9 +168,9 @@ return function()
 						if not OtherPlayer then break end
 						looping = true
 						--if OtherPlayer == nil then break end
-						FlingPart.Position= p1.Position--:Lerp(p1.CFrame,1)
+						Global.FlingPart.Position= p1.Position--:Lerp(p1.CFrame,1)
 						task.wait(.1)
-						FlingPart.Position= p2.Position--:Lerp(p2.CFrame,1)
+						Global.FlingPart.Position= p2.Position--:Lerp(p2.CFrame,1)
 						task.wait(.1)
 					end
 					for _,v in ipairs({w,w2,p1,p2}) do game:GetService('Debris'):AddItem(v,0) end
@@ -177,7 +178,7 @@ return function()
 					FlingEnabled = false
 					looping = false
 				else
-					if not looping and not FlingEnabled then FlingPart.CFrame= Player.Character.Torso.CFrame - Vector3.new(0,6,0) end
+					if not looping and not FlingEnabled then Global.FlingPart.CFrame= Player.Character.Torso.CFrame - Vector3.new(0,6,0) end
 				end
 			end)
 			elseif Global.FlingType == 'Prediction only' then
@@ -205,25 +206,25 @@ return function()
 								w.C0 = CFrame.new(0,0,8)
 								w2.C0 = CFrame.new(0,0,-8)
 								for _=1,15 do
-									FlingPart.Position = p1.Position
+									Global.FlingPart.Position = p1.Position
 									task.wait(.1)
-									FlingPart.Position = p2.Position
+									Global.FlingPart.Position = p2.Position
 									task.wait(.1)
 								end
 								for _,v in ipairs({w,w2,p1,p2}) do game:GetService('Debris'):AddItem(v,0) end
 								flinging = false
 							else flinging = false 
 								if Mouse.Target then 
-									FlingPart.CFrame = Mouse.Hit 
+									Global.FlingPart.CFrame = Mouse.Hit 
 								else 
-									FlingPart.CFrame = Player.Character.Torso.CFrame - Vector3.new(0,6,0) 
+									Global.FlingPart.CFrame = Player.Character.Torso.CFrame - Vector3.new(0,6,0) 
 								end 
 							end
 						end
 					else 
 						if flinging == true then 
 						else 
-							FlingPart.CFrame = Player.Character.Torso.CFrame - Vector3.new(0,6,0) 
+							Global.FlingPart.CFrame = Player.Character.Torso.CFrame - Vector3.new(0,6,0) 
 						end
 					end
 				end)
@@ -231,10 +232,10 @@ return function()
 				connection = game:GetService('RunService').Heartbeat:Connect(function()
 					if MouseDown then
 						if Mouse.Target then
-							FlingPart.CFrame = Mouse.Hit	
+							Global.FlingPart.CFrame = Mouse.Hit	
 						end
 					else
-						FlingPart.CFrame= Player.Character.Torso.CFrame - Vector3.new(0,6,0)
+						Global.FlingPart.CFrame= Player.Character.Torso.CFrame - Vector3.new(0,6,0)
 					end
 				end)
 			end
