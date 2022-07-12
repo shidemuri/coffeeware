@@ -9,7 +9,7 @@ return function()
 
 	local MouseDown = false;
 	local FlingEnabled = false
-	
+	local isnetworkowner = isnetworkowner or function() return true end
 	Mouse.Button1Down:Connect(function() MouseDown=true end)
 	Mouse.Button1Up:Connect(function() MouseDown=false end)
 	
@@ -54,6 +54,7 @@ return function()
 					Selection.FillColor = Color3.fromHSV(i,1,1)
 					Selection.OutlineColor = Color3.fromHSV(i,1,1)
 					Part.Transparency = 0
+					if isnetworkowner(Part) then Selection.Enabled = true else Selection.Enabled = false end
 					task.wait()
 				end
 			end
