@@ -69,7 +69,7 @@ return function()
 		Global.Velocity = -35
 		Global.Collisions = true
 		Global.AntiSleep = true
-		Global.MovementVelocity = false
+		Global.MovementVelocity = true --testing
 		Global.ArtificialHeartBeat = true
 		Global.EnableSpin = true
 	end
