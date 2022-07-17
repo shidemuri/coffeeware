@@ -9,7 +9,11 @@ return function()
 
 	local MouseDown = false;
 	local FlingEnabled = false
-	local isnetworkowner = isnetworkowner or function() return true end
+	getgenv().isnetworkowner = isnetworkowner or function(part) return part.ReceiveAge == 0 end 
+	--[[
+		part.ReceiveAge is the time in seconds since the last time the physics of a basepart has updated, if 0 then theres no physics (its anchored)
+		in the context of exploiting, 0 means that the player is simulating physics on the basepart, and therefore owns it
+	]]
 	Mouse.Button1Down:Connect(function() MouseDown=true end)
 	Mouse.Button1Up:Connect(function() MouseDown=false end)
 	
