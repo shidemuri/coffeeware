@@ -501,7 +501,7 @@ extra.Texture = "http://www.roblox.com/asset/?id=0"
 
 
 coroutine.resume(coroutine.create(function() wait(.5)
-	for i, v in pairs(Character:GetDescendants()) do
+	for i, v in pairs(Character:GetChildren()) do
 		if v:IsA("Shirt") or v:IsA("Pants")or v:IsA("CharacterMesh") or v:IsA("BodyColors") then
 			v:Destroy()
 		end
@@ -514,7 +514,7 @@ coroutine.resume(coroutine.create(function() wait(.5)
 	end
     for i, v in pairs(game.Players.LocalPlayer.Character:GetDescendants()) do
 		if v:IsA("Shirt") or v:IsA("Pants")or v:IsA("CharacterMesh") or v:IsA("BodyColors") then
-			v:Destroy()
+			--v:Destroy()
 		end
 		if v:IsA("Accessory") or v:IsA('Hat') then
 			if v:FindFirstChild('Handle') then
