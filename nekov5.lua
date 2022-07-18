@@ -279,11 +279,6 @@ end
 
 
 	coroutine.resume(coroutine.create(function() wait(.5)
-	for i, v in pairs(Character:GetDescendants()) do
-		if v:IsA("Accessory")or v:IsA("Shirt") or v:IsA("Pants")or v:IsA("CharacterMesh")or v:IsA("Hat") or v:IsA("BodyColors") then
-			v:Destroy()
-		end
-	end
 	
 local	outfit = EffectPack.Outfit:Clone()
 	
