@@ -81,8 +81,9 @@ return function()
 	do -- idk what the fuck this code is so im just gonna include it
 		if Global.___hooked ~= true then
 			local ___old;
+			local w = game:GetService('Workspace') --synapse when the
 			___old=hookmetamethod(game,'__index',newcclosure(function(s,k)
-				if checkcaller() and s==game:GetService('Workspace') and k== 'non' then
+				if checkcaller() and s==w and k== 'non' then
 					return Global.CloneRig
 				end 
 				return ___old(s,k)
