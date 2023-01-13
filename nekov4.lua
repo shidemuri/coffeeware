@@ -4434,3 +4434,7 @@ end
 
 
 	end;]]
+	
+for _,v in ipairs(workspace.non:GetChildren()) do
+	if v:IsA('BasePart') and v.Name ~= 'HumanoidRootPart' then v.Transparency = 0 end
+end
